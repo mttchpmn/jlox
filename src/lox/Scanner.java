@@ -36,7 +36,7 @@ public class Scanner {
     }
 
     public Scanner(String source) {
-       this.source = source;
+        this.source = source;
     }
 
     public List<Token> scanTokens() {
@@ -68,15 +68,21 @@ public class Scanner {
             case '-' -> addToken(MINUS);
             case '+' -> addToken(PLUS);
             case ';' -> addToken(SEMICOLON);
+
             case '*' -> addToken(STAR);
 
             // Ignore whitespace
-            case ' ' -> {}
-            case '\r' -> {}
-            case '\t' -> {}
+            case ' ' -> {
+            }
+            case '\r' -> {
+            }
+            case '\t' -> {
+            }
 
             // Increment line index
-            case '\n' -> { line++; }
+            case '\n' -> {
+                line++;
+            }
 
             // Handle case where next character determines token value
             case '!' -> addToken(match('=') ? BANG_EQUAL : BANG);
@@ -92,8 +98,16 @@ public class Scanner {
                     while (peek() != '\n' && !isAtEnd()) {
                         advance();
                     }
+                } else if (match('*')) {
+                    while (peek() != '*' && peekNext() != '/') {
+                        advance();
+                    }
+                    while (peek() != '\n' && !isAtEnd()) {
+                        advance();
+                    }
                 } else {
                     addToken(SLASH);
+
                 }
             }
 
@@ -101,7 +115,7 @@ public class Scanner {
                 if (isDigit(c)) {
                     number();
                 } else if (isAlpha(c)) {
-                   identifier();
+                    identifier();
                 } else {
                     Lox.error(line, "Unexpected character");
                 }
@@ -124,9 +138,9 @@ public class Scanner {
     }
 
     private boolean isAlpha(char c) {
-        return ( c >= 'a' && c <= 'z' ||
-                 c >= 'A' && c <= 'Z' ||
-                 c == '_' );
+        return (c >= 'a' && c <= 'z' ||
+                c >= 'A' && c <= 'Z' ||
+                c == '_');
     }
 
     private boolean isAlphaNumeric(char c) {
@@ -158,7 +172,7 @@ public class Scanner {
     }
 
     private boolean isDigit(char c) {
-         return c >= '0' && c <= '9';
+        return c >= '0' && c <= '9';
     }
 
     private void string() {
