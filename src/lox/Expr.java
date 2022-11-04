@@ -1,4 +1,4 @@
-package com.JLox.lox;
+package lox;
 
 import lox.Token;
 
