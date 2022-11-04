@@ -1,0 +1,9 @@
+var myName = "Matt"
+
+var myAge = 31
+/* I am a long
+comment lol */ "foo"
+
+while (true) {
+    print ""
+}
